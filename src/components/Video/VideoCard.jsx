@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function VideoCard({ video }) {
-  return <div>{video.snippet.title}</div>;
+  return <div key={video.id}>{video.snippet.title}</div>;
 }
