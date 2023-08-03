@@ -1,39 +1,17 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
-import Home from "./pages/Home";
-import Root from "./pages/Root";
-import Search from "./pages/Search";
-import VideoDetail from "./pages/VideoDetail";
-import Videos from "./pages/Videos";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
+import { Outlet } from "react-router-dom";
+import SearchHeader from "./components/Nav/SearchHeader";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <p>Not Found😫</p>,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/videos",
-        element: <Videos />,
-      },
-      {
-        path: "/videos/:videoId",
-        element: <VideoDetail />,
-      },
-      {
-        path: "/search/:keyword",
-        element: <Search />,
-      },
-    ],
-  },
-]);
+const queryClient = new QueryClient();
 
-function App() {
-  return <RouterProvider router={router} />;
+export default function App() {
+  return (
+    <div className="w-full max-w-screen-2xl flex justify-center flex-col items-center m-auto">
+      <SearchHeader />
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+      </QueryClientProvider>
+    </div>
+  );
 }
-
-export default App;
