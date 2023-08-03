@@ -10,10 +10,14 @@ export default function Video() {
     isLoading,
     error,
     data: videos,
-  } = useQuery(["videos", keyword], () => {
-    const youtube = new FakeYoutube();
-    return youtube.search(keyword);
-  });
+  } = useQuery(["videos", keyword], () =>
+    // search(keyword) 아래의 클래스 안 쓰고 바로 youtube.js 사용시
+    // 비동기 내부 네트워크 구현사항을 별도의 네트워크 담당 모듈로 설정
+    {
+      const youtube = new FakeYoutube();
+      return youtube.search(keyword);
+    },
+  );
   return (
     <div>
       {keyword ? `search: ${keyword}` : "🔥"}
