@@ -18,6 +18,8 @@ export function YoutubeApiProvider({ children }) {
 
 // 사용하는곳에서 Provider안에 있는 그 어떤 children 컴포넌트에서도
 // useYoutubeApi함수를 사용하면 value={youtube}에 접근할 수 있도록 만들어준다
+// 위의 클래스를 통해 만든 인스턴스를 자식 컴포넌트에서 손쉽게 사용할 수 있도록
+// useYoutubeApi를 만듦
 export function useYoutubeApi() {
   return useContext(YoutubeApiContext);
 }
