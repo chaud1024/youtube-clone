@@ -13,23 +13,22 @@ export default function VideoDetail() {
   const { title, channelId, channelTitle, description } = video.snippet;
 
   return (
-    <section className="w-full">
-      <article className="w-full">
-        <div className="w-full lg:w-3/5 aspect-[16/9]">
+    <section className="flex flex-col lg:flex-row">
+      <article className="basis-4/6">
+        <div className="w-full aspect-video">
           <iframe
             width="100%"
             height="100%"
             src={`https://www.youtube.com/embed/${video.id}`}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+            title="YouTube video player"></iframe>
         </div>
-        <h2>{title}</h2>
-        <ChannelInfo id={channelId} name={channelTitle} />
-        <pre>{description}</pre>
+        <div className="p-4 box-border">
+          <h2 className="text-xl font-bold">{title}</h2>
+          <ChannelInfo id={channelId} name={channelTitle} />
+          <pre className="whitespace-pre-wrap">{description}</pre>
+        </div>
       </article>
-      <section>
+      <section className="basis-2/6 ml-4">
         <RelatedVideos id={video.id} />
       </section>
     </section>
